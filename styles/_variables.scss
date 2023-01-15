@@ -1,0 +1,16 @@
+$breakpoints: (
+  "sm": 576px,
+  "md": 768px,
+  "lg": 992px,
+  "xl": 1200px,
+);
+
+@mixin mq($size) {
+  @media screen and (max-width: #{map-get($breakpoints, $size)}) {
+    @content;
+  }
+}
+
+// width
+$base-pc-width: 950px;
+$large-pc-width: 768px;
