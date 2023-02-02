@@ -14,7 +14,7 @@ export const getServerSideProps = async ({
     `public/data/query+summary/basic_0_${query.m}.json`
   );
 
-  const data = await fsPromises.readFile(filePath);
+  const data: any = await fsPromises.readFile(filePath);
   const outputs = JSON.parse(data);
 
   return {
