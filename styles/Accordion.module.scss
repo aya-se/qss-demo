@@ -1,0 +1,44 @@
+.query_content,
+.answer_content {
+  flex-wrap: nowrap;
+  align-items: center;
+  transition: max-height 0.3s ease;
+  .query_icon,
+  .answer_icon {
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2rem;
+    width: 3rem;
+    height: 3rem;
+  }
+  .query_icon {
+    background-color: #0071bc;
+  }
+  .answer_icon {
+    background-color: #ff5050ff;
+    border-radius: 0.5rem;
+  }
+  .query_text,
+  .answer_text {
+    align-items: center;
+    font-size: 1.25rem;
+    line-height: 150%;
+    width: calc(100% - 3rem);
+    height: auto;
+    padding: 1rem;
+  }
+  .query_text {
+    font-size: 1.25rem;
+  }
+  .answer_text {
+    font-size: 1rem;
+  }
+}
+.query_content {
+  cursor: pointer;
+}
+.answer_content {
+  height: 0;
+  overflow: hidden;
+}
