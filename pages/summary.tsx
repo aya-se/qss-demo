@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import styles from "../styles/Summary.module.scss";
 import { GetServerSidePropsContext } from "next";
 import Accordion from "../components/Accordion";
+import SwitchButton from "../components/SwitchButton";
 
 export const getServerSideProps = async ({
   query,
@@ -34,33 +35,38 @@ type PageProps = {
 export default function Summary(props: PageProps) {
   const router = useRouter();
   const query = router.query;
+  const content = useState<string>("summary");
   const document_id = useState<number>(0);
   const model_type = useState<string>("query+summary");
   const model_id = useState<number>(0);
+  const [isDocument, setIsDocument] = useState<boolean>(false);
   return (
     <main>
       <Head>
         <title>Summary | QSS Demo</title>
       </Head>
-      {props.outputs.map((value, idx) => (
-        <div key={idx} id={`output-${idx}`} className={styles.output_content}>
-          <Accordion query={value.query} summary={value.summary} idx={idx} />
-        </div>
-      ))}
-      {props.documents[Number(query.d)].meeting_transcripts.map(
-        (value: string, idx: number) => (
-          <div key={idx} id={`turn-${idx}`}>
-            <div className={styles.turn_content}>
-              <div className={styles.turn_speaker}>
-                <span>{value.substring(0, value.indexOf(":") + 1)}</span>
-              </div>
-              <span className={styles.turn_text}>
-                {value.substring(value.indexOf(":") + 1, value.length)}
-              </span>
-            </div>
+      <SwitchButton value={isDocument} setValue={setIsDocument} />
+      {!isDocument &&
+        props.outputs.map((value, idx) => (
+          <div key={idx} id={`output-${idx}`} className={styles.output_content}>
+            <Accordion query={value.query} summary={value.summary} idx={idx} />
           </div>
-        )
-      )}
+        ))}
+      {isDocument &&
+        props.documents[Number(query.d)].meeting_transcripts.map(
+          (value: string, idx: number) => (
+            <div key={idx} id={`turn-${idx}`}>
+              <div className={styles.turn_content}>
+                <div className={styles.turn_speaker}>
+                  <span>{value.substring(0, value.indexOf(":") + 1)}</span>
+                </div>
+                <span className={styles.turn_text}>
+                  {value.substring(value.indexOf(":") + 1, value.length)}
+                </span>
+              </div>
+            </div>
+          )
+        )}
     </main>
   );
 }
