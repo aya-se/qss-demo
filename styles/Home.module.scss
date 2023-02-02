@@ -1,182 +1,30 @@
-@use 'variables' as v;
+@use "variables" as v;
 
-.container {
-  max-width: v.$large-pc-width !important;
-  margin: 0 auto;
-}
-
-.subtitle {
-  font-size: 20px;
-  padding: 0 10px 10px;
-
-  @include v.mq(sm) {
-    font-size: 14px;
-  }
-}
-.main_contents {
-  display: flex;
-  flex-wrap: wrap;
+.top_content {
+  width: 100%;
+  background-color: #333333;
+  color: white;
   justify-content: center;
-}
-
-.card {
-  position: relative;
-  border: 1px solid #dae1e8;
-  box-shadow: 0 1px 4px 0 rgb(0 0 0 / 10%);
-  border-radius: 8px;
-  padding: 20px;
-  margin: 10px;
-  width: calc(50% - 20px);
-  transition: border ease 0.1s;
-
-  @include v.mq(sm) {
-    padding: 15px;
-    margin: 10px 0px;
+  padding: 60px;
+  .top_title {
     width: 100%;
+    font-size: 2.5rem;
   }
-
-  &:focus-within {
-    border-color: #00838f;
-  }
-
-  .card_header {
-    display: flex;
-    flex-wrap: wrap;
-
-    .card_title {
-      font-size: 16px;
-      font-weight: bold;
-
-      @include v.mq(sm) {
-        font-size: 12px;
-      }
-    }
-  }
-
-  .card_contents {
-    margin-top: 10px;
-  }
-
-  .card_form {
+  .top_description {
     width: 100%;
-    height: 400px;
-    font-size: 24px;
-    border: none;
+    font-size: 1.25rem;
+  }
+  .top_button {
+    font-size: 1.5rem;
+    padding: 1rem 1.5rem;
     outline: none;
-    resize: none;
-
-    @include v.mq(sm) {
-      font-size: 14px;
-      height: 75px;
-    }
-  }
-
-  .card_text {
-    font-size: 18px;
-    @include v.mq(sm) {
-      font-size: 14px;
-    }
-  }
-
-  .card_player {
-    position: relative;
-    margin: 15px auto;
-    width: 90%;
-    max-width: 720px;
-
-    &:before {
-      content:"";
-      display: block;
-      padding-top: 62.5%;
-    }
-
-    .card_player_contents {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 20px;
-      
-      @include v.mq(md) {
-        border-radius: 12px;
-      }
-
-      &:focus-within {
-        border-radius: 0;
-      } 
-    }
-  }
-
-  .length_count {
-    position: absolute;
-    color: #9ba3ac;
-    bottom: 10px;
-    right: 15px;
-    @include v.mq(sm) {
-      font-size: 12px;
-      bottom: 10px;
-      right: 10px;
-    }
-  }
-
-  .delete_button {
-    position: absolute;
-    color: #9ba3ac;
-    top: 10px;
-    right: 10px;
-    width: 50px;
-    height: 50px;
-    font-size: 30px;
-    background-color: transparent;
     border: none;
-    outline: none;
-    border-radius: 25px;
-
-    @include v.mq(sm) {
-      top: 7.5px;
-      right: 7.5px;
-      width: 30px;
-      height: 30px;
-      font-size: 20px;
+    color: white;
+    background-color: #00838f;
+    transition: all ease 0.3s;
+    pointer-events: auto;
+    &:hover {
+      background-color: #0071bc;
     }
-
-    @media (hover: hover) and (pointer: fine) {
-      &:hover {
-        color: #333;
-        background-color: #f7f7f7;
-      }
-    }
-  }
-}
-
-.card_explanation {
-  width: 100%;
-}
-
-.over_length {
-  &:focus-within {
-    border-color: red !important;
-  }
-}
-
-.loading_screen {
-  border-radius: 8px;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  display: flex;
-  flex-wrap: wrap;
-
-  .loading_icon {
-    color: #9ba3ac;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
   }
 }

@@ -1,7 +1,8 @@
-@use 'variables' as v;
+@use "variables" as v;
 
 .header {
-  background-color: #0090ac;
+  background-color: white;
+  width: 100%;
   height: 60px;
   padding: 0 40px;
 
@@ -15,21 +16,16 @@
   display: flex;
   flex-wrap: wrap;
   height: 100%;
-  justify-content:space-between;
+  justify-content: space-between;
 }
 
 .header_title {
-  color: white;
+  color: #333333;
   font-size: 24px;
   margin: auto 0;
   text-decoration: none;
-  
+
   @include v.mq(sm) {
     font-size: 18px;
-  }
-
-  &:hover {
-    color: white;
-    text-decoration: underline;
   }
 }
