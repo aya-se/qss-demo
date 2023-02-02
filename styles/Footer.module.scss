@@ -1,0 +1,355 @@
+.footer {
+  display: flex;
+  flex: 1;
+  margin-top: 2rem;
+  padding: 2rem 0;
+  border-top: 1px solid #eaeaea;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.sns_links {
+  list-style: none;
+  margin: 0 0 -8px;
+  overflow: hidden;
+  padding: 0;
+}
+.sns_links li {
+  float: left;
+  margin: 0 8px 8px 0;
+  padding: 0;
+}
+.sns_links a {
+  text-decoration: none;
+}
+.sns_links li a::before {
+  border-style: solid;
+  border-width: 1px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  color: #fff;
+  display: inline-block;
+  font-family: FontAwesome;
+  font-size: 16px;
+  height: 42px; /* Button height */
+  line-height: 42px; /* Button height */
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  text-align: center;
+  width: 42px; /* Button width */
+}
+.sns_links li a[href*="amazon.co.jp"]::before,
+.sns_links li a[href*="amazon.com"]::before {
+  border-color: #ff9900;
+  background-color: #ff9900;
+  content: "\f270";
+}
+.sns_links li a[href*="codepen.io"]::before {
+  border-color: #000000;
+  background-color: #000000;
+  content: "\f1cb";
+}
+.sns_links li a[href*="delicious.com"]::before {
+  border-color: #3399ff;
+  background-color: #3399ff;
+  content: "\f1a5";
+}
+.sns_links li a[href*="deviantart.com"]::before {
+  border-color: #05cc47;
+  background-color: #05cc47;
+  content: "\f1bd";
+}
+.sns_links li a[href*="digg.com"]::before {
+  border-color: #000000;
+  background-color: #000000;
+  content: "\f1a6";
+}
+.sns_links li a[href*="dribble.com"]::before {
+  border-color: #000000;
+  background-color: #ea4c89;
+  content: "\f17d";
+}
+.sns_links li a[href*="dropbox.com"]::before {
+  border-color: #007ee5;
+  background-color: #007ee5;
+  content: "\f16b";
+}
+.sns_links li a[href*="facebook.com"]::before {
+  border-color: #3b5998;
+  background-color: #3b5998;
+  content: "\f09a";
+}
+.sns_links li a[href*="feedly.com"]::before {
+  border-color: #6cc655;
+  background-color: #6cc655;
+  content: "\f09e";
+}
+.sns_links li a[href*="flickr.com"]::before {
+  border-color: #0063cc;
+  background-color: #0063dc;
+  content: "\f16e";
+}
+.sns_links li a[href*="foursquare.com"]::before {
+  border-color: #f94877;
+  background-color: #f94877;
+  content: "\f180";
+}
+.sns_links li a[href*="github.com"]::before {
+  border-color: #181717;
+  background-color: #181717;
+  content: "\f09b";
+}
+.sns_links li a[href*="plus.google.com"]::before {
+  border-color: #dc4e41;
+  background-color: #dc4e41;
+  content: "\f0d5";
+}
+.sns_links li a[href*="b.hatena.ne.jp"]::before {
+  border-color: #008fde;
+  background-color: #008fde;
+  content: "\f027";
+  font-family: blogicon;
+}
+.sns_links li a[href*="instagram.com"]::before {
+  border-color: #125688;
+  background-color: #125688;
+  content: "\f16d";
+}
+.sns_links li a[href*="last.fm"]::before {
+  border-color: #d51007;
+  background-color: #d51007;
+  content: "\f202";
+}
+.sns_links li a[href*="linkedin.com"]::before {
+  border-color: #0077b5;
+  background-color: #0077b5;
+  content: "\f0e1";
+}
+.sns_links li a[href*="nicovideo.jp"]::before {
+  border-color: #eaeaea;
+  background-color: #eaeaea;
+  content: "\f047";
+  font-family: blogicon;
+}
+.sns_links li a[href*="pinterest.com"]::before {
+  border-color: #bd081c;
+  background-color: #bd081c;
+  content: "\f0d2";
+}
+.sns_links li a[href*="getpocket.com"]::before {
+  border-color: #ef3f56;
+  background-color: #ef3f56;
+  content: "\f265";
+}
+.sns_links li a[href*="reddit.com"]::before {
+  border-color: #ff4500;
+  background-color: #ff4500;
+  content: "\f1a1";
+}
+.sns_links li a[href*="skype.com"]::before,
+.sns_links li a[href*="skype:"]::before {
+  border-color: #00aff0;
+  background-color: #00aff0;
+  content: "\f17e";
+}
+.sns_links li a[href*="slideshare.net"]::before {
+  border-color: #2d2d2d;
+  background-color: #2d2d2d;
+  content: "\f1e7";
+}
+.sns_links li a[href*="spotify.com"]::before {
+  border-color: #84bd00;
+  background-color: #84bd00;
+  content: "\f1bc";
+}
+.sns_links li a[href*="steamcommunity.com"]::before {
+  border-color: #171a21;
+  background-color: #171a21;
+  content: "\f1b6";
+}
+.sns_links li a[href*="stumbleupon.com"]::before {
+  border-color: #eb4929;
+  background-color: #eb4929;
+  content: "\f1a4";
+}
+.sns_links li a[href*="tumblr.com"]::before {
+  border-color: #36465d;
+  background-color: #36465d;
+  content: "\f173";
+}
+.sns_links li a[href*="twitch.tv"]::before {
+  border-color: #6441a5;
+  background-color: #6441a5;
+  content: "\f1e8";
+}
+.sns_links li a[href*="twitter.com"]::before {
+  border-color: #55acee;
+  background-color: #55acee;
+  content: "\f099";
+}
+.sns_links li a[href*="vimeo.com"]::before {
+  border-color: #1ab7ea;
+  background-color: #1ab7ea;
+  content: "\f27d";
+}
+.sns_links li a[href*="vine.co"]::before {
+  border-color: #11b58a;
+  background-color: #11b58a;
+  content: "\f1ca";
+}
+.sns_links li a[href*="weibo.com"]::before {
+  border-color: #e6162d;
+  background-color: #e6162d;
+  content: "\f18a";
+}
+.sns_links li a[href*="whatsapp.com"]::before {
+  border-color: #64d548;
+  background-color: #64d548;
+  content: "\f232";
+}
+.sns_links li a[href*="wordpress.com"]::before,
+.sns_links li a[href*="wordpress.org"]::before {
+  border-color: #21759b;
+  background-color: #21759b;
+  content: "\f19a";
+}
+.sns_links li a[href*="youtube.com"]::before {
+  border-color: #cd201f;
+  background-color: #cd201f;
+  content: "\f16a";
+}
+.sns_links li a[href$="/feed"]::before {
+  border-color: #ffa500;
+  background-color: #ffa500;
+  content: "\f09e";
+}
+.sns_links li a[href$="/subscribe"]::before {
+  border-color: #363636;
+  background-color: #363636;
+  content: "\f000";
+  font-family: blogicon;
+}
+.sns_links li a:hover::before {
+  background-color: #fff;
+}
+.sns_links li a[href*="amazon.co.jp"]:hover::before,
+.sns_links li a[href*="amazon.com"]:hover::before {
+  color: #ff9900;
+}
+.sns_links li a[href*="codepen.io"]:hover::before {
+  color: #000000;
+}
+.sns_links li a[href*="delicious.com"]:hover::before {
+  color: #3399ff;
+}
+.sns_links li a[href*="deviantart.com"]:hover::before {
+  color: #05cc47;
+}
+.sns_links li a[href*="digg.com"]:hover::before {
+  color: #000000;
+}
+.sns_links li a[href*="dribble.com"]:hover::before {
+  color: #ea4c89;
+}
+.sns_links li a[href*="dropbox.com"]:hover::before {
+  color: #007ee5;
+}
+.sns_links li a[href*="facebook.com"]:hover::before {
+  color: #3b5998;
+}
+.sns_links li a[href*="feedly.com"]:hover::before {
+  color: #6cc655;
+}
+.sns_links li a[href*="flickr.com"]:hover::before {
+  color: #0063dc;
+}
+.sns_links li a[href*="foursquare.com"]:hover::before {
+  color: #f94877;
+}
+.sns_links li a[href*="github.com"]:hover::before {
+  color: #181717;
+}
+.sns_links li a[href*="plus.google.com"]:hover::before {
+  color: #dc4e41;
+}
+.sns_links li a[href*="b.hatena.ne.jp"]:hover::before {
+  color: #008fde;
+}
+.sns_links li a[href*="instagram.com"]:hover::before {
+  color: #125688;
+}
+.sns_links li a[href*="last.fm"]:hover::before {
+  color: #d51007;
+}
+.sns_links li a[href*="linkedin.com"]:hover::before {
+  color: #0077b5;
+}
+.sns_links li a[href*="nicovideo.jp"]:hover::before {
+  color: #eaeaea;
+}
+.sns_links li a[href*="pinterest.com"]:hover::before {
+  color: #bd081c;
+}
+.sns_links li a[href*="getpocket.com"]:hover::before {
+  color: #ef3f56;
+}
+.sns_links li a[href*="reddit.com"]:hover::before {
+  color: #ff4500;
+}
+.sns_links li a[href*="skype.com"]:hover::before,
+.sns_links li a[href*="skype:"]:hover::before {
+  color: #00aff0;
+}
+.sns_links li a[href*="slideshare.net"]:hover::before {
+  color: #2d2d2d;
+}
+.sns_links li a[href*="spotify.com"]:hover::before {
+  color: #84bd00;
+}
+.sns_links li a[href*="steamcommunity.com"]:hover::before {
+  color: #171a21;
+}
+.sns_links li a[href*="stumbleupon.com"]:hover::before {
+  color: #eb4929;
+}
+.sns_links li a[href*="tumblr.com"]:hover::before {
+  color: #36465d;
+}
+.sns_links li a[href*="twitch.tv"]:hover::before {
+  color: #6441a5;
+}
+.sns_links li a[href*="twitter.com"]:hover::before {
+  color: #55acee;
+}
+.sns_links li a[href*="vimeo.com"]:hover::before {
+  color: #1ab7ea;
+}
+.sns_links li a[href*="vine.co"]:hover::before {
+  color: #11b58a;
+}
+.sns_links li a[href*="weibo.com"]:hover::before {
+  color: #e6162d;
+}
+.sns_links li a[href*="whatsapp.com"]:hover::before {
+  color: #64d548;
+}
+.sns_links li a[href*="wordpress.com"]:hover::before,
+.sns_links li a[href*="wordpress.org"]:hover::before {
+  color: #21759b;
+}
+.sns_links li a[href*="youtube.com"]:hover::before {
+  color: #cd201f;
+}
+.sns_links li a[href$="/feed"]:hover::before {
+  color: #ffa500;
+}
+.sns_links li a[href$="/subscribe"]:hover::before {
+  color: #363636;
+}
