@@ -19,6 +19,22 @@ div {
   animation-fill-mode: forwards;
   opacity: 0;
 }
+main {
+  padding: 2.5rem;
+}
+
+button {
+  font-family: "Noto Sans";
+  outline: none;
+  border: none;
+  color: white;
+  background-color: #00838f;
+  transition: all ease 0.3s;
+  pointer-events: all;
+  &:hover {
+    background-color: #0071bc;
+  }
+}
 
 a {
   color: #2f7d95;

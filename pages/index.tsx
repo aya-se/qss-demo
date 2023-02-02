@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "../styles/Home.module.scss";
 
@@ -14,12 +15,9 @@ export default function Home() {
         <h3 className={styles.top_description}>
           クエリ推薦付き要約は、ユーザ体験向上のための新しい文書自動要約形式です。クエリ指向要約を発展させ、複数のクエリと要約を統合的に生成します。
         </h3>
-        <button
-          className={styles.top_button}
-          onClick={() => router.push("/summary")}
-        >
+        <Link className={styles.top_button} href="/summary?d=0&m=1">
           試してみる
-        </button>
+        </Link>
       </div>
     </div>
   );

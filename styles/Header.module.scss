@@ -5,6 +5,7 @@
   width: 100%;
   height: 60px;
   padding: 0 40px;
+  border-bottom: 3px solid #d9d9d9ff;
 
   @include v.mq(sm) {
     height: 40px;
@@ -21,11 +22,11 @@
 
 .header_title {
   color: #333333;
-  font-size: 24px;
+  font-size: 1.75rem;
   margin: auto 0;
   text-decoration: none;
 
   @include v.mq(sm) {
-    font-size: 18px;
+    font-size: 1rem;
   }
 }
