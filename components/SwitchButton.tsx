@@ -13,7 +13,7 @@ const SwitchButton = ({ value, setValue }: PropTypes) => {
         className={styles.toggle_input}
         type="checkbox"
         checked={value}
-        onClick={() => setValue(!value)}
+        onChange={() => setValue(!value)}
       />
       <label htmlFor="toggle" className={styles.toggle_label} />
     </div>
