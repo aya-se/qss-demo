@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import fsPromises from "fs/promises";
 import path from "path";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import styles from "../styles/Summary.module.scss";
 import { GetServerSidePropsContext } from "next";
 import Accordion from "../components/Accordion";
@@ -35,28 +35,81 @@ type PageProps = {
 export default function Summary(props: PageProps) {
   const router = useRouter();
   const query = router.query;
-  const [content, setContent] = useState<string>("summary");
   const [documentId, setDocumentId] = useState<number>(0);
   const [modelType, setModelType] = useState<string>("query+summary");
-  const [modelId, setModelId] = useState<number>(0);
+  const [modelId, setModelId] = useState<number>(1);
   const [isDocument, setIsDocument] = useState<boolean>(false);
+  const queryRange = [0, 12, 18, 22, 28, 32];
+
+  const handleDocumentForm = (e: ChangeEvent<HTMLInputElement>) => {
+    setDocumentId(Number(e.target.value));
+    router.push(`/summary?d=${e.target.value}&m=${modelId}`);
+  };
+  const handleModelForm = (e: ChangeEvent<HTMLInputElement>) => {
+    setModelId(Number(e.target.value));
+    router.push(`/summary?d=${documentId}&m=${e.target.value}`);
+  };
+
+  useEffect(() => {
+    setDocumentId(Number(query.d));
+    setModelId(Number(query.m));
+  }, []);
+
   return (
     <main>
       <Head>
         <title>Summary | QSS Demo</title>
       </Head>
       <div className={styles.top_content}>
-        <SwitchButton value={isDocument} setValue={setIsDocument} />
-        <div className={styles.top_text}>{!isDocument ? "要約" : "文書"}</div>
+        <div className={styles.top_form_content}>
+          <input
+            className={styles.top_form}
+            type="number"
+            min={1}
+            max={5}
+            onChange={(e) => handleDocumentForm(e)}
+            value={documentId}
+          />
+          <div className={styles.top_text}>文書ID</div>
+        </div>
+        <div className={styles.top_form_content}>
+          <input
+            className={styles.top_form}
+            type="number"
+            min={1}
+            max={1}
+            onChange={(e) => handleModelForm(e)}
+            value={modelId}
+          />
+          <div className={styles.top_text}>モデルID</div>
+        </div>
+        <div className={styles.top_form_content}>
+          <SwitchButton value={isDocument} setValue={setIsDocument} />
+          <div className={styles.top_text}>{!isDocument ? "要約" : "文書"}</div>
+        </div>
       </div>
       {!isDocument &&
-        props.outputs.map((value, idx) => (
-          <div key={idx} id={`output-${idx}`} className={styles.output_content}>
-            <Accordion query={value.query} summary={value.summary} idx={idx} />
-          </div>
-        ))}
+        props.outputs
+          .filter((_, i) => {
+            return (
+              queryRange[documentId - 1] <= i && i < queryRange[documentId]
+            );
+          })
+          .map((value, idx) => (
+            <div
+              key={idx}
+              id={`output-${idx}`}
+              className={styles.output_content}
+            >
+              <Accordion
+                query={value.query}
+                summary={value.summary}
+                idx={idx}
+              />
+            </div>
+          ))}
       {isDocument &&
-        props.documents[Number(query.d)].meeting_transcripts.map(
+        props.documents[documentId - 1].meeting_transcripts.map(
           (value: string, idx: number) => (
             <div key={idx} id={`turn-${idx}`}>
               <div className={styles.turn_content}>

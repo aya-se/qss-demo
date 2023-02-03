@@ -4,10 +4,28 @@
   padding: 1rem;
   justify-content: center;
   color: #434343ff;
-  .top_text {
+  .top_form_content {
     justify-content: center;
-    width: 100%;
-    margin-top: 0.5rem;
+    width: auto;
+    .top_form {
+      color: #333333;
+      font-size: 1.25rem;
+      width: 4rem;
+      height: 2rem;
+      justify-content: center;
+      text-align: center;
+      border: 1px solid #d9d9d9ff;
+      border-radius: 0.25rem;
+      outline: none;
+      &:focused {
+        border-color: #0071bc;
+      }
+    }
+    .top_text {
+      justify-content: center;
+      width: 100%;
+      margin-top: 0.5rem;
+    }
   }
 }
 .output_content {

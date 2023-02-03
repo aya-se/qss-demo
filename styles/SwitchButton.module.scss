@@ -1,7 +1,7 @@
 .toggle_button {
   position: relative;
-  width: 75px;
-  height: 35px;
+  width: 4rem;
+  height: 2rem;
   margin: auto;
 
   .toggle_input {
@@ -24,8 +24,8 @@
     }
   }
   .toggle_label {
-    width: 75px;
-    height: 35px;
+    width: 4rem;
+    height: 2rem;
     background: #ff5050ff;
     position: relative;
     display: inline-block;
@@ -35,8 +35,8 @@
     &:after {
       content: "";
       position: absolute;
-      width: 35px;
-      height: 35px;
+      width: 2rem;
+      height: 2rem;
       border-radius: 100%;
       left: 0;
       top: 0;
