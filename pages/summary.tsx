@@ -35,17 +35,20 @@ type PageProps = {
 export default function Summary(props: PageProps) {
   const router = useRouter();
   const query = router.query;
-  const content = useState<string>("summary");
-  const document_id = useState<number>(0);
-  const model_type = useState<string>("query+summary");
-  const model_id = useState<number>(0);
+  const [content, setContent] = useState<string>("summary");
+  const [documentId, setDocumentId] = useState<number>(0);
+  const [modelType, setModelType] = useState<string>("query+summary");
+  const [modelId, setModelId] = useState<number>(0);
   const [isDocument, setIsDocument] = useState<boolean>(false);
   return (
     <main>
       <Head>
         <title>Summary | QSS Demo</title>
       </Head>
-      <SwitchButton value={isDocument} setValue={setIsDocument} />
+      <div className={styles.top_content}>
+        <SwitchButton value={isDocument} setValue={setIsDocument} />
+        <div className={styles.top_text}>{!isDocument ? "要約" : "文書"}</div>
+      </div>
       {!isDocument &&
         props.outputs.map((value, idx) => (
           <div key={idx} id={`output-${idx}`} className={styles.output_content}>
