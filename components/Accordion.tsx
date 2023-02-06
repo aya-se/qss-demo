@@ -6,11 +6,9 @@ type PropTypes = {
   idx: number;
   query: string;
   summary: string;
-  handleHighlights: () => void;
-  relevantTurns: Array<number>;
-  relevantSpan: Array<number>;
+  handleHighlights: (idx: number) => void;
 };
-const Accordion = ({ query, summary, idx }: PropTypes) => {
+const Accordion = ({ query, summary, idx, handleHighlights }: PropTypes) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const controls = useAnimationControls();
   useEffect(() => {
@@ -37,7 +35,15 @@ const Accordion = ({ query, summary, idx }: PropTypes) => {
         <div className={styles.query_icon}>
           <span>Q</span>
         </div>
-        <span className={styles.query_text}>{query}</span>
+        <span className={styles.query_text}>
+          {query}
+          <button
+            className={styles.cite_button}
+            onClick={() => handleHighlights(idx)}
+          >
+            [引用]
+          </button>
+        </span>
       </div>
       <motion.div
         id={`answer-${idx}`}
