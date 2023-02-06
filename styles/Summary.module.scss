@@ -35,6 +35,9 @@
 .turn_content {
   padding: 1rem;
   border-bottom: 1px solid #d9d9d9ff;
+  &.highlight {
+    background-color: cornsilk;
+  }
   .turn_speaker {
     padding-bottom: 0.5rem;
     font-weight: bold;

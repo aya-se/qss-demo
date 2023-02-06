@@ -6,6 +6,9 @@ type PropTypes = {
   idx: number;
   query: string;
   summary: string;
+  handleHighlights: () => void;
+  relevantTurns: Array<number>;
+  relevantSpan: Array<number>;
 };
 const Accordion = ({ query, summary, idx }: PropTypes) => {
   const [isExpanded, setIsExpanded] = useState(false);

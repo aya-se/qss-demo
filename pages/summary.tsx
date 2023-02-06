@@ -39,6 +39,7 @@ export default function Summary(props: PageProps) {
   const [modelType, setModelType] = useState<string>("query+summary");
   const [modelId, setModelId] = useState<number>(1);
   const [isDocument, setIsDocument] = useState<boolean>(false);
+  const [relevantTurns, setRelevantTurns] = useState<Array<number>>([]);
   const queryRange = [0, 12, 18, 22, 28, 32];
 
   const handleDocumentForm = (e: ChangeEvent<HTMLInputElement>) => {
@@ -49,11 +50,16 @@ export default function Summary(props: PageProps) {
     setModelId(Number(e.target.value));
     router.push(`/summary?d=${documentId}&m=${e.target.value}`);
   };
+  const handleHighlights = () => {};
 
   useEffect(() => {
     setDocumentId(Number(query.d));
     setModelId(Number(query.m));
   }, []);
+
+  const highlightClass = (idx: number) => {
+    return relevantTurns.includes(idx) ? " " + styles.highlight : "";
+  };
 
   return (
     <main>
@@ -104,7 +110,10 @@ export default function Summary(props: PageProps) {
               <Accordion
                 query={value.query}
                 summary={value.summary}
+                relevantSpan={value.relevant_span}
                 idx={idx}
+                handleHighlights={handleHighlights}
+                relevantTurns={relevantTurns}
               />
             </div>
           ))}
@@ -112,7 +121,7 @@ export default function Summary(props: PageProps) {
         props.documents[documentId - 1].meeting_transcripts.map(
           (value: string, idx: number) => (
             <div key={idx} id={`turn-${idx}`}>
-              <div className={styles.turn_content}>
+              <div className={styles.turn_content + highlightClass(idx)}>
                 <div className={styles.turn_speaker}>
                   <span>{value.substring(0, value.indexOf(":") + 1)}</span>
                 </div>

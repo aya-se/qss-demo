@@ -1,10 +1,8 @@
 import Head from "next/head";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import styles from "../styles/Home.module.scss";
 
 export default function Home() {
-  const router = useRouter();
   return (
     <div>
       <Head>
