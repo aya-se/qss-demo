@@ -79,25 +79,29 @@ export default function Summary(props: PageProps) {
       </Head>
       <div className={styles.top_content}>
         <div className={styles.top_form_content}>
-          <input
+          <select
             className={styles.top_form}
-            type="number"
-            min={1}
-            max={5}
-            onChange={(e) => handleDocumentForm(e)}
-            value={documentId}
-          />
+            onChange={(e) => setDocumentId(Number(e.target.value))}
+          >
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
+            <option value={4}>4</option>
+            <option value={5}>5</option>
+          </select>
           <div className={styles.top_text}>文書ID</div>
         </div>
         <div className={styles.top_form_content}>
-          <input
+          <select
             className={styles.top_form}
-            type="number"
-            min={1}
-            max={1}
-            onChange={(e) => handleModelForm(e)}
-            value={modelId}
-          />
+            onChange={(e) => setModelId(Number(e.target.value))}
+          >
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
+            <option value={4}>4</option>
+            <option value={5}>5</option>
+          </select>
           <div className={styles.top_text}>モデルID</div>
         </div>
         <div className={styles.top_form_content}>
