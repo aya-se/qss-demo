@@ -39,9 +39,7 @@ export default function Summary(props: PageProps) {
   const [modelType, setModelType] = useState<string>("query+summary");
   const [modelId, setModelId] = useState<number>(1);
   const [isDocument, setIsDocument] = useState<boolean>(false);
-  const [relevantTurns, setRelevantTurns] = useState<Array<number>>([
-    0, 1, 2, 3,
-  ]);
+  const [relevantTurns, setRelevantTurns] = useState<Array<number>>([]);
   const queryRange = [0, 12, 18, 22, 28, 32];
 
   const handleDocumentForm = (e: ChangeEvent<HTMLInputElement>) => {
@@ -52,12 +50,12 @@ export default function Summary(props: PageProps) {
     setModelId(Number(e.target.value));
     router.push(`/summary?d=${documentId}&m=${e.target.value}`);
   };
-  const handleHighlights = (idx: number) => {
-    setRelevantTurns(props.outputs[idx].relavant_span);
+  const handleHighlights = (relevantSpan: Array<number>) => {
+    setRelevantTurns(relevantSpan);
     setIsDocument(true);
-    if (props.outputs[idx].relavant_span > 0) {
+    if (relevantSpan.length > 0) {
       router.push(
-        `/summary?d=${documentId}&m=${modelId}#turn-${props.outputs[idx].relavant_span[0]}`
+        `/summary?d=${documentId}&m=${modelId}#turn-${relevantSpan[0]}`
       );
     }
   };
@@ -65,10 +63,9 @@ export default function Summary(props: PageProps) {
   useEffect(() => {
     setDocumentId(Number(query.d));
     setModelId(Number(query.m));
-  }, []);
+  }, [query]);
 
   const highlightClass = (idx: number) => {
-    console.log(relevantTurns);
     if (relevantTurns === undefined) {
       return "";
     }
@@ -124,6 +121,7 @@ export default function Summary(props: PageProps) {
               <Accordion
                 query={value.query}
                 summary={value.summary}
+                relevantSpan={value.relevant_span}
                 idx={idx}
                 handleHighlights={handleHighlights}
               />

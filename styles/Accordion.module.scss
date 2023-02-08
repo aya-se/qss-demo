@@ -34,6 +34,18 @@
   .answer_text {
     font-size: 1rem;
   }
+  .cite_button {
+    font-weight: bold;
+    background: none;
+    border: none;
+    color: #00838f;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+      color: #0071bc;
+      text-decoration: underline;
+    }
+  }
 }
 .query_content {
   cursor: pointer;

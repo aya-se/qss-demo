@@ -6,9 +6,16 @@ type PropTypes = {
   idx: number;
   query: string;
   summary: string;
-  handleHighlights: (idx: number) => void;
+  relevantSpan: Array<number>;
+  handleHighlights: (relevantSpan: Array<number>) => void;
 };
-const Accordion = ({ query, summary, idx, handleHighlights }: PropTypes) => {
+const Accordion = ({
+  query,
+  summary,
+  idx,
+  relevantSpan,
+  handleHighlights,
+}: PropTypes) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const controls = useAnimationControls();
   useEffect(() => {
@@ -39,7 +46,7 @@ const Accordion = ({ query, summary, idx, handleHighlights }: PropTypes) => {
           {query}
           <button
             className={styles.cite_button}
-            onClick={() => handleHighlights(idx)}
+            onClick={() => handleHighlights(relevantSpan)}
           >
             [引用]
           </button>
