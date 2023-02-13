@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import fsPromises from "fs/promises";
 import path from "path";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import styles from "../styles/Summary.module.scss";
 import { GetServerSidePropsContext } from "next";
 import Accordion from "../components/Accordion";
@@ -19,7 +19,12 @@ export const getServerSideProps = async ({
 
   const data_outputs: any = await fsPromises.readFile(outputs_path);
   const data_document: any = await fsPromises.readFile(documents_path);
-  const outputs = JSON.parse(data_outputs);
+  const queryRange = [0, 12, 18, 22, 28, 32, 38, 47, 53, 59, 65, 71, 76, 83, 95, 106, 113, 119, 123, 128, 134, 146, 152, 158, 161, 170, 176, 188, 197, 203, 209, 215, 221, 227, 238, 244];
+  const outputs = JSON.parse(data_outputs).filter((_: any, i: number) => {
+    return (
+      queryRange[Number(query.d)-1] <= i && i < queryRange[Number(query.d)]
+    );
+  });
   const document = JSON.parse(data_document);
 
   return {
@@ -38,35 +43,26 @@ type PageProps = {
 export default function Summary(props: PageProps) {
   const router = useRouter();
   const query = router.query;
-  const [documentId, setDocumentId] = useState<number>(1);
-  const [modelType, setModelType] = useState<string>("query+summary");
-  const [modelId, setModelId] = useState<number>(1);
   const [isDocument, setIsDocument] = useState<boolean>(false);
   const [relevantTurns, setRelevantTurns] = useState<Array<number>>([]);
-  const queryRange = [0, 12, 18, 22, 28, 32, 38, 47, 53, 59, 65, 71, 76, 83, 95, 106, 113, 119, 123, 128, 134, 146, 152, 158, 161, 170, 176, 188, 197, 203, 209, 215, 221, 227, 238, 244];
 
   const handleDocumentForm = (e: ChangeEvent<HTMLSelectElement>) => {
-    setDocumentId(Number(e.target.value));
-    router.push(`/summary?d=${e.target.value}&m=${modelId}`);
+    setRelevantTurns([]);
+    router.push(`/summary?d=${e.target.value}&m=${query.m}`);
   };
   const handleModelForm = (e: ChangeEvent<HTMLSelectElement>) => {
-    setModelId(Number(e.target.value));
-    router.push(`/summary?d=${documentId}&m=${e.target.value}`);
+    setRelevantTurns([]);
+    router.push(`/summary?d=${query.d}&m=${e.target.value}`);
   };
   const handleHighlights = (relevantSpan: Array<number>) => {
     setRelevantTurns(relevantSpan);
     setIsDocument(true);
     if (relevantSpan.length > 0) {
       router.push(
-        `/summary?d=${documentId}&m=${modelId}#turn-${relevantSpan[0]}`
+        `/summary?d=${query.d}&m=${query.m}#turn-${relevantSpan[0]}`
       );
     }
   };
-
-  useEffect(() => {
-    setDocumentId(Number(query.d));
-    setModelId(Number(query.m));
-  }, [query]);
 
   const highlightClass = (idx: number) => {
     if (relevantTurns === undefined) {
@@ -87,7 +83,7 @@ export default function Summary(props: PageProps) {
             onChange={(e) => handleDocumentForm(e)}
           >
             {[...Array(35)].map((_, idx) => (
-              <option key={idx} value={idx+1}>
+              <option key={idx} value={idx+1} selected={idx+1 === Number(query.d)}>
                 {idx+1}
               </option>
             ))}
@@ -97,7 +93,7 @@ export default function Summary(props: PageProps) {
         <div className={styles.top_form_content}>
           <select
             className={styles.top_form}
-            onChange={(e) => setModelId(Number(e.target.value))}
+            onChange={(e) => handleModelForm(e)}
           >
             <option value={1}>1</option>
             <option value={2}>2</option>
@@ -113,27 +109,21 @@ export default function Summary(props: PageProps) {
         </div>
       </div>
       {!isDocument &&
-        props.outputs
-          .filter((_, i) => {
-            return (
-              queryRange[documentId - 1] <= i && i < queryRange[documentId]
-            );
-          })
-          .map((value, idx) => (
-            <div
-              key={idx}
-              id={`output-${idx}`}
-              className={styles.output_content}
-            >
-              <Accordion
-                query={value.query}
-                summary={value.summary}
-                relevantSpan={value.relevant_span}
-                idx={idx}
-                handleHighlights={handleHighlights}
-              />
-            </div>
-          ))}
+        props.outputs.map((value, idx) => (
+          <div
+            key={idx}
+            id={`output-${idx}`}
+            className={styles.output_content}
+          >
+            <Accordion
+              query={value.query}
+              summary={value.summary}
+              relevantSpan={value.relevant_span}
+              idx={idx}
+              handleHighlights={handleHighlights}
+            />
+          </div>
+        ))}
       {isDocument &&
         props.document.meeting_transcripts.map(
           (value: string, idx: number) => (
