@@ -13,7 +13,7 @@ export default function Home() {
         <h3 className={styles.top_description}>
           クエリ推薦付き要約は、ユーザ体験向上のための新しい文書自動要約形式です。クエリ指向要約を発展させ、複数のクエリと要約を統合的に生成します。
         </h3>
-        <Link className={styles.top_button} href="/summary?d=1&m=1">
+        <Link className={styles.top_button} href="/summary?d=1&m=SegEnc">
           試してみる
         </Link>
       </div>

@@ -13,10 +13,9 @@ export const getServerSideProps = async ({
 }: GetServerSidePropsContext) => {
   const outputs_path = path.join(
     process.cwd(),
-    `public/data/query+summary/basic_0_${query.m}.json`
+    `public/outputs/${query.m}.json`
   );
   const documents_path = path.join(process.cwd(), `public/documents/m_test_${Number(query.d)-1}.json`);
-
   const data_outputs: any = await fsPromises.readFile(outputs_path);
   const data_document: any = await fsPromises.readFile(documents_path);
   const queryRange = [0, 12, 18, 22, 28, 32, 38, 47, 53, 59, 65, 71, 76, 83, 95, 106, 113, 119, 123, 128, 134, 146, 152, 158, 161, 170, 176, 188, 197, 203, 209, 215, 221, 227, 238, 244];
@@ -43,6 +42,7 @@ type PageProps = {
 export default function Summary(props: PageProps) {
   const router = useRouter();
   const query = router.query;
+  const models = ["SegEnc", "LED", "SegEnc(No Span)", "LED(No Span)", "SegEnc(Filter)", "SegEnc(Gold)"]
   const [isDocument, setIsDocument] = useState<boolean>(false);
   const [relevantTurns, setRelevantTurns] = useState<Array<number>>([]);
 
@@ -95,11 +95,11 @@ export default function Summary(props: PageProps) {
             className={styles.top_form}
             onChange={(e) => handleModelForm(e)}
           >
-            <option value={1}>1</option>
-            <option value={2}>2</option>
-            <option value={3}>3</option>
-            <option value={4}>4</option>
-            <option value={5}>5</option>
+            {models.map((value, idx) => (
+              <option key={idx} value={value} selected={value === query.m}>
+                {value}
+              </option>
+            ))}
           </select>
           <div className={styles.top_text}>モデルID</div>
         </div>
