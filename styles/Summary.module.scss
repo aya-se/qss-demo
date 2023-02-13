@@ -1,5 +1,5 @@
 .top_content {
-  border: 1px solid #d9d9d9ff;
+  border: 1px solid #eaeaea;
   border-radius: 0.5rem;
   padding: 1rem;
   justify-content: center;
@@ -14,7 +14,7 @@
       height: 2rem;
       justify-content: center;
       text-align: center;
-      border: 1px solid #d9d9d9ff;
+      border: 1px solid #eaeaea;
       border-radius: 0.25rem;
       outline: none;
       &:focused {
@@ -30,11 +30,11 @@
 }
 .output_content {
   padding: 0.5rem 0;
-  border-bottom: 1px solid #d9d9d9ff;
+  border-bottom: 1px solid #eaeaea;
 }
 .turn_content {
   padding: 1rem;
-  border-bottom: 1px solid #d9d9d9ff;
+  border-bottom: 1px solid #eaeaea;
   &.highlight {
     background-color: cornsilk;
   }
