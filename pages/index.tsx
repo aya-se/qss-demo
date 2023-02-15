@@ -81,7 +81,7 @@ export default function Home() {
           </li>
           <li>
             <a
-              href="https://github.com/aya-se"
+              href="https://github.com/aya-se/qss-demo"
               target="_blank"
               rel="noreferrer"
             ></a>

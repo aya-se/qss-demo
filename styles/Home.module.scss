@@ -8,6 +8,7 @@
   padding: 60px;
   @include v.mq() {
     padding: 30px;
+    padding-bottom: 40px;
   }
   .top_title {
     width: 100%;
