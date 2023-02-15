@@ -1,8 +1,13 @@
+@use "variables" as v;
+
 .toggle_button {
   position: relative;
   width: 4rem;
   height: 2rem;
   margin: auto;
+  @include v.mq() {
+    margin-top: 1rem;
+  }
 
   .toggle_input {
     position: absolute;

@@ -1,3 +1,5 @@
+@use "variables" as v;
+
 .query_content,
 .answer_content {
   flex-wrap: nowrap;
@@ -11,6 +13,11 @@
     font-size: 2rem;
     width: 3rem;
     height: 3rem;
+    @include v.mq() {
+      font-size: 1.25rem;
+      width: 2rem;
+      height: 2rem;
+    }
   }
   .query_icon {
     background-color: #0071bc;
@@ -22,14 +29,22 @@
   .query_text,
   .answer_text {
     align-items: center;
-    font-size: 1.25rem;
     line-height: 150%;
     width: calc(100% - 3rem);
     height: auto;
     padding: 1rem;
+    padding-right: 0;
+    @include v.mq() {
+      width: calc(100% - 2rem);
+      padding: 0.5rem 1rem;
+      padding-right: 0;
+    }
   }
   .query_text {
     font-size: 1.25rem;
+    @include v.mq() {
+      font-size: 1rem;
+    }
   }
   .answer_text {
     font-size: 1rem;

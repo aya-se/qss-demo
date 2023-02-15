@@ -1,3 +1,5 @@
+@use "variables" as v;
+
 .info_card {
   width: 420px;
   background-color: #fff;
@@ -13,10 +15,12 @@
     margin-bottom: 10px;
   }
   .info_card_content {
-    vertical-align: top;
     .info_card_title {
       font-size: 1.5rem;
       margin-bottom: 10px;
+      @include v.mq() {
+        font-size: 1.25rem;
+      }
     }
     .info_card_description {
       font-size: 1rem;

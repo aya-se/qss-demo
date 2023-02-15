@@ -23,6 +23,9 @@ div {
 main {
   padding: 2.5rem;
   min-height: calc(100vh - 172px);
+  @include v.mq() {
+    padding: 1rem;
+  }
 }
 
 a {
@@ -35,7 +38,7 @@ a {
 ul {
   margin-block-end: 0;
   padding-inline-start: 20px;
-  @include v.mq(md) {
+  @include v.mq() {
     padding-inline-start: 15px;
   }
 }

@@ -1,9 +1,14 @@
+@use "variables" as v;
+
 .top_content {
   border: 1px solid #eaeaea;
   border-radius: 0.5rem;
   padding: 1rem;
   justify-content: center;
   color: #434343ff;
+  @include v.mq() {
+    padding: 1rem 0.5rem;
+  }
   .top_form_content {
     justify-content: center;
     width: auto;
@@ -17,6 +22,7 @@
       border: 1px solid #eaeaea;
       border-radius: 0.25rem;
       outline: none;
+      background-color: white;
       &:focused {
         border-color: #0071bc;
       }
@@ -29,6 +35,9 @@
       justify-content: center;
       width: 100%;
       margin-top: 0.5rem;
+      @include v.mq() {
+        margin-top: 0.25rem;
+      }
     }
   }
 }
@@ -39,6 +48,9 @@
 .turn_content {
   padding: 1rem;
   border-bottom: 1px solid #eaeaea;
+  @include v.mq() {
+    padding: 1rem 0.5rem;
+  }
   &.highlight {
     background-color: cornsilk;
   }
