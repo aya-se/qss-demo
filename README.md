@@ -8,14 +8,17 @@ https://qss-demo.vercel.app/
 
 ### トップページ
 モデルに関する簡単な説明などを載せています。
+
 <img width="2288" alt="image" src="https://user-images.githubusercontent.com/62830512/218963500-b387f76c-975a-42fb-a57c-8d0b971c5631.png">
 
 ### クエリ・要約
 モデルが生成したクエリ・要約の一覧を閲覧できます。アコーディオン形式になっており、興味がある質問をクリックすることで要約が表示されます。
+
 <img width="2289" alt="image" src="https://user-images.githubusercontent.com/62830512/218963622-7c03f49f-7e7a-427e-a8ac-0c75f64d5b60.png">
 
 ### 文書スクリプト
 一部の生成モデルでは、各クエリ・要約の生成元の区間をハイライトで表示します。
+
 <img width="2290" alt="image" src="https://user-images.githubusercontent.com/62830512/218963726-1ce60bfc-9d0e-442b-ae5b-45677f871052.png">
 
 
