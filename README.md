@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Query Suggestion and Summarization
+クエリ推薦付き要約は、ユーザ体験向上のための新しい文書自動要約形式です。クエリ指向要約を発展させ、複数のクエリと要約を統合的に生成します。
 
-## Getting Started
+## デモサイト
+クエリ推薦付き要約について、より分かりやすくイメージを持っていただくために、本研究で提案した各手法による実際の生成結果をブラウザ上で閲覧できるデモサイトを製作しました。以下のURLからご覧いただけます（スマートフォンも可）。
 
-First, run the development server:
+https://qss-demo.vercel.app/
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### トップページ
+モデルに関する簡単な説明などを載せています。
+<img width="2288" alt="image" src="https://user-images.githubusercontent.com/62830512/218963500-b387f76c-975a-42fb-a57c-8d0b971c5631.png">
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### クエリ・要約
+モデルが生成したクエリ・要約の一覧を閲覧できます。アコーディオン形式になっており、興味がある質問をクリックすることで要約が表示されます。
+<img width="2289" alt="image" src="https://user-images.githubusercontent.com/62830512/218963622-7c03f49f-7e7a-427e-a8ac-0c75f64d5b60.png">
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### 文書スクリプト
+一部の生成モデルでは、各クエリ・要約の生成元の区間をハイライトで表示します。
+<img width="2290" alt="image" src="https://user-images.githubusercontent.com/62830512/218963726-1ce60bfc-9d0e-442b-ae5b-45677f871052.png">
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## 発表論文
+言語処理学会第29回年次大会 (NLP2023)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+H5-2　クエリ指向要約におけるクエリと要約の統合的な生成
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+○服部翔, Youmi Ma, 岡崎直観 (東工大)
