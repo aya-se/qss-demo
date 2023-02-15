@@ -11,17 +11,26 @@ import SwitchButton from "../components/SwitchButton";
 export const getServerSideProps = async ({
   query,
 }: GetServerSidePropsContext) => {
+  query.d = query.d || "1";
+  query.m = query.m || "SegEnc";
   const outputs_path = path.join(
     process.cwd(),
     `public/outputs/${query.m}.json`
   );
-  const documents_path = path.join(process.cwd(), `public/documents/m_test_${Number(query.d)-1}.json`);
+  const documents_path = path.join(
+    process.cwd(),
+    `public/documents/m_test_${Number(query.d) - 1}.json`
+  );
   const data_outputs: any = await fsPromises.readFile(outputs_path);
   const data_document: any = await fsPromises.readFile(documents_path);
-  const queryRange = [0, 12, 18, 22, 28, 32, 38, 47, 53, 59, 65, 71, 76, 83, 95, 106, 113, 119, 123, 128, 134, 146, 152, 158, 161, 170, 176, 188, 197, 203, 209, 215, 221, 227, 238, 244];
+  const queryRange = [
+    0, 12, 18, 22, 28, 32, 38, 47, 53, 59, 65, 71, 76, 83, 95, 106, 113, 119,
+    123, 128, 134, 146, 152, 158, 161, 170, 176, 188, 197, 203, 209, 215, 221,
+    227, 238, 244,
+  ];
   const outputs = JSON.parse(data_outputs).filter((_: any, i: number) => {
     return (
-      queryRange[Number(query.d)-1] <= i && i < queryRange[Number(query.d)]
+      queryRange[Number(query.d) - 1] <= i && i < queryRange[Number(query.d)]
     );
   });
   const document = JSON.parse(data_document);
@@ -33,7 +42,7 @@ export const getServerSideProps = async ({
 
 type Document = {
   meeting_transcripts: Array<string>;
-}
+};
 type PageProps = {
   outputs: Array<any>;
   document: Document;
@@ -42,7 +51,16 @@ type PageProps = {
 export default function Summary(props: PageProps) {
   const router = useRouter();
   const query = router.query;
-  const models = ["SegEnc", "LED", "SegEnc(No Span)", "LED(No Span)", "SegEnc(Filter)", "SegEnc(Gold)"]
+  query.d = query.d || "1";
+  query.m = query.m || "SegEnc";
+  const models = [
+    "SegEnc",
+    "LED",
+    "SegEnc(No Span)",
+    "LED(No Span)",
+    "SegEnc(Filter)",
+    "SegEnc(Gold)",
+  ];
   const [isDocument, setIsDocument] = useState<boolean>(false);
   const [relevantTurns, setRelevantTurns] = useState<Array<number>>([]);
 
@@ -58,9 +76,7 @@ export default function Summary(props: PageProps) {
     setRelevantTurns(relevantSpan);
     setIsDocument(true);
     if (relevantSpan.length > 0) {
-      router.push(
-        `/summary?d=${query.d}&m=${query.m}#turn-${relevantSpan[0]}`
-      );
+      router.push(`/summary?d=${query.d}&m=${query.m}#turn-${relevantSpan[0]}`);
     }
   };
 
@@ -83,8 +99,12 @@ export default function Summary(props: PageProps) {
             onChange={(e) => handleDocumentForm(e)}
           >
             {[...Array(35)].map((_, idx) => (
-              <option key={idx} value={idx+1} selected={idx+1 === Number(query.d)}>
-                {idx+1}
+              <option
+                key={idx}
+                value={idx + 1}
+                selected={idx + 1 === Number(query.d)}
+              >
+                {idx + 1}
               </option>
             ))}
           </select>
@@ -92,7 +112,7 @@ export default function Summary(props: PageProps) {
         </div>
         <div className={styles.top_form_content}>
           <select
-            className={styles.top_form}
+            className={`${styles.top_form} ${styles.top_form_longer}`}
             onChange={(e) => handleModelForm(e)}
           >
             {models.map((value, idx) => (
@@ -110,11 +130,7 @@ export default function Summary(props: PageProps) {
       </div>
       {!isDocument &&
         props.outputs.map((value, idx) => (
-          <div
-            key={idx}
-            id={`output-${idx}`}
-            className={styles.output_content}
-          >
+          <div key={idx} id={`output-${idx}`} className={styles.output_content}>
             <Accordion
               query={value.query}
               summary={value.summary}
@@ -125,20 +141,18 @@ export default function Summary(props: PageProps) {
           </div>
         ))}
       {isDocument &&
-        props.document.meeting_transcripts.map(
-          (value: string, idx: number) => (
-            <div key={idx} id={`turn-${idx}`}>
-              <div className={styles.turn_content + highlightClass(idx)}>
-                <div className={styles.turn_speaker}>
-                  <span>{value.substring(0, value.indexOf(":") + 1)}</span>
-                </div>
-                <span className={styles.turn_text}>
-                  {value.substring(value.indexOf(":") + 1, value.length)}
-                </span>
+        props.document.meeting_transcripts.map((value: string, idx: number) => (
+          <div key={idx} id={`turn-${idx}`}>
+            <div className={styles.turn_content + highlightClass(idx)}>
+              <div className={styles.turn_speaker}>
+                <span>{value.substring(0, value.indexOf(":") + 1)}</span>
               </div>
+              <span className={styles.turn_text}>
+                {value.substring(value.indexOf(":") + 1, value.length)}
+              </span>
             </div>
-          )
-        )}
+          </div>
+        ))}
     </main>
   );
 }
