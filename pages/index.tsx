@@ -64,7 +64,11 @@ export default function Home() {
         </InfoCard>
         <InfoCard title={"論文情報"} image={"/info_6.png"}>
           本研究は、2023年3月に開催される言語処理学会第29回年次大会に投稿・発表します。投稿した論文は
-          <a href="" target="_blank" rel="noreferrer">
+          <a
+            href="https://www.anlp.jp/proceedings/annual_meeting/2023/pdf_dir/H5-2.pdf"
+            target="_blank"
+            rel="noreferrer"
+          >
             こちら
           </a>
           からご覧いただけます。
